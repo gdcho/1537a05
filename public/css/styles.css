@@ -88,18 +88,13 @@ table{
     text-align: center;
 }
 
-#course, #faculty, #requirement, #cost {
+#course, #faculty, #requirement, #weekdaysHTML, #cost {
     background-color: transparent;
     border: none;
     color: white;
     font-size: 16px;
     cursor: pointer;
 }
-
-  #course:hover, #faculty:hover, #requirement:hover, #cost:hover {
-    color:rgb(251, 251, 126);
-    text-transform:uppercase;
-  }  
 
 
 .hidden {

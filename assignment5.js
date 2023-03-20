@@ -4,7 +4,6 @@
 // REQUIRES
 const express = require("express");
 const app = express();
-
 app.use(express.json());
 const fs = require("fs");
 
@@ -53,6 +52,28 @@ app.get("/cost", function (req, res) {
     res.setHeader("Content-Type", "application/json");
     // just send the text stream
     res.send(doc);
+});
+
+app.get("/weekdays", function (req, res) {
+
+    let formatOfResponse = req.query["format"];
+
+    // e.g.,: http://localhost:8000/weekdays?format=html
+    // e.g.,: http://localhost:8000/weekdays?format=json
+    if (formatOfResponse == "html") {
+        // MIME type
+        res.setHeader("Content-Type", "text/html");
+        res.send(fs.readFileSync("./app/data/weekdays.html", "utf8"));
+
+    } else if (formatOfResponse == "json") {
+        // MIME type
+        res.setHeader("Content-Type", "application/json");
+        res.send(fs.readFileSync("./app/data/weekdays.js", "utf8"));
+
+    } else {
+        // just send JSON message
+        res.send({ status: "fail", msg: "Wrong format!" });
+    }
 });
 
 // for page not found (i.e., 404)

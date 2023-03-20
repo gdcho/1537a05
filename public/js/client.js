@@ -1,36 +1,26 @@
 
-console.log("Assignment 5 loaded.");
+// invoke ready and pass in a callback function
+ready(function () {
 
-// a function declaration inside of a callback ... which takes a callback function :O
-function ajaxGET(url, callback) {
+    console.log("Assignment5 is loaded.");
 
-    const xhr = new XMLHttpRequest();
+    // a function declaration inside of a callback ... which takes a callback function :O
+    function ajaxGET(url, callback) {
 
-    // knock knock
-    let value = null;
+        const xhr = new XMLHttpRequest();
+        console.log("xhr", xhr);
+        xhr.onload = function () {
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                //console.log('responseText:' + xhr.responseText);
+                callback(this.responseText);
 
-    //console.log("xhr", xhr);
-    xhr.onload = function () {
-        value = this.responseText;
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            //console.log('responseText:' + xhr.responseText);
-
-            // callback function
-            value = this.responseText;
-            callback(this.responseText);
-
-        } else {
-            console.log(this.status);
+            } else {
+                console.log(this.status);
+            }
         }
+        xhr.open("GET", url);
+        xhr.send();
     }
-    xhr.open("GET", url);
-    xhr.send();
-    // who's there?
-    console.log("value", value);
-
-}
-
-
 
 let isDisplayed = false; // track whether the table is already displayed
 
@@ -198,8 +188,16 @@ document.querySelector("#requirement").addEventListener("click", function (e) {
     }
 });
 
-document.querySelector("#cost").addEventListener("click", function (e) {
-    const requirementDataEl = document.getElementById("cost-data");
+// document.querySelector("#weekdaysHTML").addEventListener("click", function (e) {
+//     ajaxGET("/weekdays?format=html", function (data) {
+//         console.log(data);
+//         // since it's HTML, let's drop it right in
+//         document.getElementById("weekdays-html").innerHTML = data;
+//     });
+// });
+
+document.querySelector("#weekdaysHTML").addEventListener("click", function (e) {
+    const requirementDataEl = document.getElementById("weekdays-html");
     const buttons = document.querySelectorAll('.ajax_content.button');
     
     if (isDisplayed) {
@@ -218,24 +216,11 @@ document.querySelector("#cost").addEventListener("click", function (e) {
         
         isDisplayed = false;
     } else {
-        ajaxGET("/cost", function (data) {
-            let parsedData = JSON.parse(data);
-            let str = "<table>";
-        
-            for (let i = 0; i < parsedData.length; i++) {
-                let item = parsedData[i];
-        
-                // Add label for first item only
-                if (i === 0) {
-                    str += "<tr><th>Fees</th><th>Costs</th><th>";
-                }
-        
-                str += "<tr><td>" + item["title"] + 
-                 "</td><td>" + item["cost"] + "</td></tr><tr>";
-            }
-        
-            str += "</table>";
-            requirementDataEl.innerHTML = str;
+        ajaxGET("/weekdays?format=html", function (data) {
+            console.log(data);
+            // since it's HTML, let's drop it right in
+            document.getElementById("weekdays-html").innerHTML = data;
+    
             requirementDataEl.classList.add("full-width");
         
             buttons.forEach(function (el) {
@@ -252,3 +237,17 @@ document.querySelector("#cost").addEventListener("click", function (e) {
         
     }
 });
+
+
+});
+
+// callback function declaration
+function ready(callback) {
+    if (document.readyState != "loading") {
+        callback();
+        console.log("ready state is 'complete'");
+    } else {
+        document.addEventListener("DOMContentLoaded", callback);
+        console.log("Listener was invoked");
+    }
+}
