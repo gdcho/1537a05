@@ -1,0 +1,595 @@
+@font-face {
+    font-family: 'Sofia Sans', sans-serif;
+    src: url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100&display=swap");
+}
+
+html, body { 
+    height: 100%; 
+    font-family: 'Sofia Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p{
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+hr{
+    border-top: 3px solid #003C6B;
+    border-radius: 5px;
+}
+
+.hrnav{
+    border-top: 3px solid #003C6B;
+    border-radius: 5px;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40% 1fr 1fr 0.1fr;
+    grid-template-areas: 
+        "sidecontainer header header header header"
+        "sidecontainer section section section section"
+        "sidecontainer content1 content2 content3 content4"
+        "footer footer footer footer footer";
+    grid-gap: 0.3rem;
+    font-weight: 300;
+
+}
+
+.sidecontainer {
+    display: grid;
+    grid-template-rows: 20% 10% 10% 10% 30%;    
+    grid-template-areas: 
+    "logo"
+    "navigation"
+    "navigation"
+    "navigation"
+    "socials";
+    grid-gap: 0.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    grid-area: sidecontainer;
+
+}
+
+table td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 5px;
+    margin: auto;
+  }
+
+  
+table{
+    margin: 0 auto;
+}
+.button {
+    position: bottom;
+    background-color: #003C6B;
+    border: none;
+    color: white;
+    width: 25%;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.full-width {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#course, #faculty, #requirement, #cost {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+  #course:hover, #faculty:hover, #requirement:hover, #cost:hover {
+    color:rgb(251, 251, 126);
+    text-transform:uppercase;
+  }  
+
+
+.hidden {
+    display: none;
+}
+
+
+
+.navigation {
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+    grid-template-areas:
+    "about" 
+    "apply"
+    "contact";
+    grid-gap: 0.2rem;
+    font-weight: 800;   
+    text-transform: uppercase;
+    grid-area: navigation;
+    
+}
+
+header {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    background-image: url("/img/bcit.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 80% 50%;
+    grid-area: header;
+}
+
+
+#section {
+    grid-area: section;
+    font-size: 2vh;
+}
+
+.ajax_content{
+    display:inline-flexbox;
+}
+
+.buttons {
+    display: inline-flexbox;    
+    position: relative;
+    font-size: 0;
+
+}
+
+#content1 {
+    grid-area: content1;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+
+#content2 {
+    grid-area: content2;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#content3 {
+    grid-area: content3;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#content4 {
+    grid-area: content4;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#logo {
+    grid-area: logo;
+}
+
+#about {
+    grid-area: about;
+
+}
+
+#apply {
+    grid-area: apply;
+}
+
+#contact {
+    grid-area: contact;
+}
+
+#socials {
+    grid-area: socials;
+    margin-top: 5px;
+    
+}
+
+ul{
+    margin-left: -20px;
+    margin-right: 30px;
+}
+
+li{
+    margin-top: 10%;
+}
+
+
+.navimg{
+    width: 30%;
+    height: auto;
+    position: relative;
+    margin-bottom: -10%;
+    margin-right: 5%;
+}
+
+
+Footer {
+    grid-area: footer;
+    font-size: small;
+    font-weight: lighter;
+    text-align: right;
+}
+
+.maincontainer1 {
+  position: absolute;
+  text-align: center;
+  background-color: rgba(0,0,0,0.75);
+  color: white;
+  padding-left: 60px;
+  padding-right: 50px;
+  width: 50%;
+  margin-top: 8%;
+  margin-left: 0%;
+  font-size: 2vh;
+  grid-area: maincontainer1
+
+}
+
+a{
+    text-decoration: none; 
+    color:black;
+}
+
+a:hover{
+    text-decoration: none; 
+    color:#003C6B;
+}
+
+a:visited { 
+    text-decoration: none; 
+    color: #003C6B; 
+}
+
+#circle {
+    border:3px solid rgba(245, 245, 245, 0.300);
+
+    width: 110px;
+    height: 110px;
+    border-radius: 70%;
+    margin: auto;
+    background-image: url("/img/bcitlogo.png");
+    background-color: #003C6B;
+    background-size: cover;
+  }
+
+.imgsections {
+    display: block;
+    width:  60%;
+    height: auto;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figcaption{
+    text-align: center;
+}
+
+.footerlogo{
+    width: 2%;
+    height: auto;
+    margin-bottom: -0.5%;
+    margin-right: 5px;
+}
+
+form {
+    text-align: right;
+}
+
+input[type=text] {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 20%;
+    margin-left:1%;
+    
+}
+
+aside{
+    font-size:15px;
+    margin-bottom: 1%;
+}
+
+
+input[type=submit] {
+    padding:8px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+.emailer{
+    position: relative;
+    margin-bottom: -1%;
+    width: 3%;
+    height: auto;
+}
+
+
+@media only screen and (min-width:1281px) and (max-width:1600px){
+    .container {
+        margin-left: 50px;
+        margin-right: 50px;
+
+    }
+
+    .responsive{
+        width: 100%;
+        height:auto;
+
+    }
+
+    .hrnav{
+        display: none;
+    }
+
+}
+
+
+@media only screen and (min-width:701px) and (max-width:1280px){
+    .container{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 10% 30% 1fr 0.1fr 0.1fr;
+        grid-template-areas: 
+        "sidecontainer sidecontainer sidecontainer sidecontainer"
+        "header header header header"
+        "section section section section"
+        "content1 content2 content3 content4"
+        "footer footer footer footer";
+        margin-left:30px;
+        margin-right:30px;
+    }
+    
+    #socials {
+        display: none!important;
+    }
+
+    .sidecontainer{
+        height: 100%;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 1.5fr;
+        grid-template-areas: "logo navigation navigation navigation";
+ 
+    }
+
+    .navigation {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 1.5fr;
+        grid-template-areas:
+        "about apply contact";
+        grid-gap: 0.2rem;
+        font-weight: 800;  
+        margin-top: -5%;         
+    }
+
+    .responsive{
+        width: 100%;
+        height:auto;
+
+    }
+
+    #contact {
+        grid-area: contact;
+        margin-right: 8px;
+    }
+
+    .maincontainer1 {
+        position: absolute;
+        background-color: rgba(0,0,0,0.75);
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 10%;
+        margin-left: 0%;
+        margin-right: 5%;
+        width: auto;
+        height:auto;
+      
+      }
+
+    .navimg{
+        width: 20%;
+        height: auto;
+        margin-top:55px;
+        margin-right: 5%;
+    }
+
+    .hrnav{
+        display: none;
+    }
+
+    figure{
+        font-weight: lighter;
+    }
+
+    #section {
+        grid-area: section;
+        font-size: medium;
+    }
+
+    .footerlogo{
+        width: 3%;
+        height: auto;
+        margin-bottom: -0.5%;
+        margin-right: 5px;
+    }
+
+    .emailer{
+        position: relative;
+        margin-bottom: -0.75%;
+        width: 3%;
+        height: auto;
+    }
+
+    .imgsections {
+        display: block;
+        width:  90%;
+        height: auto;
+        object-fit: cover;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #circle {
+        border:3px solid rgba(245, 245, 245, 0.300);
+        width: 70px;
+        height: 70px;
+        border-radius: 70%;
+        margin-top: 3%;
+        background-image: url("/img/bcitlogo.png");
+        background-color: #003C6B;
+        background-size: cover;
+    }
+    
+
+
+}
+
+
+@media only screen and (max-width:700px){
+    .container{
+        grid-template-columns: 1fr;
+        grid-template-rows:3fr 2fr 70fr 10fr 50fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+        "sidecontainer"
+        "sidecontainer"
+        "sidecontainer"
+        "header"
+        "section"
+        "content1"
+        "content2"
+        "content3"
+        "content4"
+        "footer";
+        margin-left: 20px;
+        margin-right:20px;
+    }
+    
+    #socials {
+        display: none!important;
+    }
+    
+    .sidecontainer{
+        height: 100%;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 5fr;
+        grid-template-areas: 
+        "navigation"
+        "logo"
+        "socials"; 
+    
+    }
+
+    .navigation {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+        "about apply contact";
+        grid-gap: 0.2rem;
+        font-weight: 800;  
+        font-size: medium;     
+        text-align: center;  
+    }
+
+    .responsive{
+        width: 100%;
+        height:auto;
+
+    }
+
+    .maincontainer1 {
+        position: absolute;
+        background-color: rgba(0,0,0,0.75);
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 18%;
+        width: 85%;
+        height:auto;
+        font-size:small;
+      
+    }
+    
+    #section {
+        grid-area: section;
+        font-size: small;
+    }
+
+    header {
+        background-image: url("/img/bcit.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 80% 50%;
+        grid-area: header;
+        margin-top: 50px;
+        height: 200px;
+    }
+
+    .navimg{
+        display: none;
+    }
+
+    #circle {
+        border:3px solid rgba(245, 245, 245, 0.300);
+        width: 80px;
+        height: 80px;
+        border-radius: 70%;
+        margin: auto;
+        background-image: url("/img/bcitlogo.png");
+        background-color: #003C6B;
+        background-size: cover;
+    }
+
+    figcaption {
+        font-size: small;
+        font-weight: small;
+    }
+
+    .footerlogo{
+        width: 5%;
+        height: auto;
+        margin-bottom: -0.5%;
+        margin-right: 5px;
+    }
+
+    .emailer{
+        position: relative;
+        margin-bottom: -1%;
+        width: 5%;
+        height: auto;
+    }
+
+}
+
+@media only screen and (min-width:1601px){
+    .hrnav{
+        display: none;
+    }
+
+    body{
+        margin-right:3%;
+        margin-left: 3%;
+    }
+}
+  
+
+
+
