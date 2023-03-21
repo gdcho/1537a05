@@ -99,17 +99,31 @@ table{
 #courseHTML:hover, #faculty:hover, #requirement:hover, #cost:hover {
     background-color: transparent;
     border: none;
-    color: red;
+    color: yellow;
     font-size: 16px;
     cursor: pointer;
 }
-
 
 .hidden {
     display: none;
 }
 
+tr {
+    border-bottom: none;
+    border-top: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+  }
+  
 
+  td {
+    border-bottom: none;
+    border-top: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+  }
+  
+  
 
 .navigation {
     display: grid;
