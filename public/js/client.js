@@ -24,8 +24,8 @@ ready(function () {
 
 let isDisplayed = false; // track whether the table is already displayed
 
-document.querySelector("#course").addEventListener("click", function (e) {
-    const requirementDataEl = document.getElementById("course-data");
+document.querySelector("#courseHTML").addEventListener("click", function (e) {
+    const requirementDataEl = document.getElementById("course-html");
     const buttons = document.querySelectorAll('.ajax_content.button');
     
     if (isDisplayed) {
@@ -44,24 +44,11 @@ document.querySelector("#course").addEventListener("click", function (e) {
         
         isDisplayed = false;
     } else {
-        ajaxGET("/course", function (data) {
-            let parsedData = JSON.parse(data);
-            let str = "<table>";
-        
-            for (let i = 0; i < parsedData.length; i++) {
-                let item = parsedData[i];
-        
-                // Add label for first item only
-                if (i === 0) {
-                    str += "<tr><th>Title</th><th>Code</th><th>Credit</th><th>Instructor</th><th>Description</th></tr>";
-                }
-        
-                str += "<tr><td>" + item["title"] + "</td><td>" + item["code"] + "</td><td>" + item["credit"] +
-                    "</td><td>" + item["instructor"] +"</td><td>" + item["description"] + "</td></tr><tr>";
-            }
-        
-            str += "</table>";
-            requirementDataEl.innerHTML = str;
+        ajaxGET("/course?format=html", function (data) {
+            console.log(data);
+            // since it's HTML, let's drop it right in
+            document.getElementById("course-html").innerHTML = data;
+    
             requirementDataEl.classList.add("full-width");
         
             buttons.forEach(function (el) {
@@ -188,16 +175,8 @@ document.querySelector("#requirement").addEventListener("click", function (e) {
     }
 });
 
-// document.querySelector("#weekdaysHTML").addEventListener("click", function (e) {
-//     ajaxGET("/weekdays?format=html", function (data) {
-//         console.log(data);
-//         // since it's HTML, let's drop it right in
-//         document.getElementById("weekdays-html").innerHTML = data;
-//     });
-// });
-
-document.querySelector("#weekdaysHTML").addEventListener("click", function (e) {
-    const requirementDataEl = document.getElementById("weekdays-html");
+document.querySelector("#cost").addEventListener("click", function (e) {
+    const requirementDataEl = document.getElementById("cost-data");
     const buttons = document.querySelectorAll('.ajax_content.button');
     
     if (isDisplayed) {
@@ -216,11 +195,23 @@ document.querySelector("#weekdaysHTML").addEventListener("click", function (e) {
         
         isDisplayed = false;
     } else {
-        ajaxGET("/weekdays?format=html", function (data) {
-            console.log(data);
-            // since it's HTML, let's drop it right in
-            document.getElementById("weekdays-html").innerHTML = data;
-    
+        ajaxGET("/cost", function (data) {
+            let parsedData = JSON.parse(data);
+            let str = "<table>";
+        
+            for (let i = 0; i < parsedData.length; i++) {
+                let item = parsedData[i];
+        
+                // Add label for first item only
+                if (i === 0) {
+                    str += "<tr><th>Title</th><th>Cost</th><th>";
+                }
+        
+                str += "<tr><td>" + item["title"] + "</td><td>" + item["cost"] + "</td></tr><tr>";
+            }
+        
+            str += "</table>";
+            requirementDataEl.innerHTML = str;
             requirementDataEl.classList.add("full-width");
         
             buttons.forEach(function (el) {

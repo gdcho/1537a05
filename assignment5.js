@@ -22,13 +22,6 @@ app.get("/", function (req, res) {
     res.send(doc);
 });
 
-app.get("/course", function (req, res) {
-
-    let doc = fs.readFileSync("./app/data/course.js", "utf8");
-    res.setHeader("Content-Type", "application/json");
-    // just send the text stream
-    res.send(doc);
-});
 
 app.get("/faculty", function (req, res) {
 
@@ -54,7 +47,7 @@ app.get("/cost", function (req, res) {
     res.send(doc);
 });
 
-app.get("/weekdays", function (req, res) {
+app.get("/course", function (req, res) {
 
     let formatOfResponse = req.query["format"];
 
@@ -63,12 +56,7 @@ app.get("/weekdays", function (req, res) {
     if (formatOfResponse == "html") {
         // MIME type
         res.setHeader("Content-Type", "text/html");
-        res.send(fs.readFileSync("./app/data/weekdays.html", "utf8"));
-
-    } else if (formatOfResponse == "json") {
-        // MIME type
-        res.setHeader("Content-Type", "application/json");
-        res.send(fs.readFileSync("./app/data/weekdays.js", "utf8"));
+        res.send(fs.readFileSync("./app/data/course.html", "utf8"));
 
     } else {
         // just send JSON message
