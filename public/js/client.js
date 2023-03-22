@@ -95,10 +95,13 @@ document.querySelector("#faculty").addEventListener("click", function (e) {
         
                 // Add label for first item only
                 if (i === 0) {
-                    str += "<tr><th>Name</th><th>Title</th><th>";
+                    str += "<tr><th>Name</th><th>Title</th><th>Course</th><th>Course</th><th>Course</th><th>";
                 }
         
-                str += "<tr><td>" + item["name"] + "</td><td>" + item["title"] + "</td></tr><tr>";
+                str += "<tr><td>" + item["name"] + "</td><td>" + item["title"] +
+                "</td><td>" + item["course1"] +
+                "</td><td>" + item["course2"] +
+                "</td><td>" + item["course3"] + "</td></tr><tr>";
             }
         
             str += "</table>";
