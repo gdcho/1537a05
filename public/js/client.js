@@ -8,14 +8,11 @@ ready(function () {
     function ajaxGET(url, callback) {
 
         const xhr = new XMLHttpRequest();
-        console.log("xhr", xhr);
         xhr.onload = function () {
             if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-                //console.log('responseText:' + xhr.responseText);
                 callback(this.responseText);
 
             } else {
-                console.log(this.status);
             }
         }
         xhr.open("GET", url);
@@ -45,7 +42,6 @@ document.querySelector("#courseHTML").addEventListener("click", function (e) {
         isDisplayed = false;
     } else {
         ajaxGET("/course?format=html", function (data) {
-            console.log(data);
             // since it's HTML, let's drop it right in
             document.getElementById("course-html").innerHTML = data;
     
@@ -239,9 +235,7 @@ document.querySelector("#cost").addEventListener("click", function (e) {
 function ready(callback) {
     if (document.readyState != "loading") {
         callback();
-        console.log("ready state is 'complete'");
     } else {
         document.addEventListener("DOMContentLoaded", callback);
-        console.log("Listener was invoked");
     }
 }
