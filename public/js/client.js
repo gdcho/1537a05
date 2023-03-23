@@ -42,6 +42,7 @@ document.querySelector("#courseHTML").addEventListener("click", function (e) {
         isDisplayed = false;
     } else {
         ajaxGET("/course?format=html", function (data) {
+            console.log(data);
             // since it's HTML, let's drop it right in
             document.getElementById("course-html").innerHTML = data;
     
@@ -83,6 +84,7 @@ document.querySelector("#faculty").addEventListener("click", function (e) {
         isDisplayed = false;
     } else {
         ajaxGET("/faculty", function (data) {
+            // console.log(data); //Shows JSON format
             let parsedData = JSON.parse(data);
             let str = "<table>";
         
