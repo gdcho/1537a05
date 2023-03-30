@@ -87,11 +87,11 @@ app.get("/user_table", function (req, res) {
             console.log(error);
         } else {
             // Create an HTML table to display the results
-            let table = "<table><tr><th>ID</th><th>User Name</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
+            let table = "<table><tr><th>ID</th><th>User Name</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password</th></tr>";
             for (let i = 0; i < users.length; i++) {
                 table += "<tr><td>" + users[i].id + "</td><td>" + users[i].username + "</td><td>"
                     + users[i].first_name + "</td><td>" + users[i].last_name + "</td><td>"
-                    + users[i].email + "</td></tr>";
+                    + users[i].email + "</td><td>" + users[i].password + "</td></tr>";
             }
             table += "</table>";
             // Send the HTML table as the response
@@ -119,14 +119,14 @@ app.get("/user_timeline", function (req, res) {
     connection.connect();
 
     // Query the user table
-    connection.query('SELECT * FROM A01351217_user_timeline', function (error, users, fields) {
+    connection.query('SELECT * FROM A01351217_user_timeline WHERE A01351217_user_timeline.user_id = 1', function (error, users, fields) {
         if (error) {
             // in production, you'd really want to send an email to admin
             // or in the very least, log it. But for now, just console
             console.log(error);
         } else {
             // Create an HTML table to display the results
-            let table = "<table><tr><th>ID</th><th>User ID</th><th>Post Date</th><th>Post Text</th><th>Post time</th><th>Post Views</th></tr>";
+            let table = "<table><tr><th>Post ID</th><th>User ID</th><th>Post Date</th><th>Post Text</th><th>Post time</th><th>Post Views</th></tr>";
             for (let i = 0; i < users.length; i++) {
                 table += "<tr><td>" + users[i].id + "</td><td>" + users[i].user_id + "</td><td>"
                     + users[i].post_date + "</td><td>" + users[i].post_text + "</td><td>"
@@ -136,10 +136,85 @@ app.get("/user_timeline", function (req, res) {
             // Send the HTML table as the response
             res.send(table);
         }
+        // Close the database connection
+        connection.end();
+    });
+});
+
+app.get("/user_timeline2", function (req, res) {
+
+    const mysql = require('mysql');
+
+    // Create a connection to the database
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'root',
+        database: 'assignment6'
     });
 
-    // Close the database connection
-    connection.end();
+    // Connect to the database
+    connection.connect();
+
+    // Query the user table
+    connection.query('SELECT * FROM A01351217_user_timeline WHERE A01351217_user_timeline.user_id = 2', function (error, users, fields) {
+        if (error) {
+            // in production, you'd really want to send an email to admin
+            // or in the very least, log it. But for now, just console
+            console.log(error);
+        } else {
+            // Create an HTML table to display the results
+            let table = "<table><tr><th>Post ID</th><th>User ID</th><th>Post Date</th><th>Post Text</th><th>Post time</th><th>Post Views</th></tr>";
+            for (let i = 0; i < users.length; i++) {
+                table += "<tr><td>" + users[i].id + "</td><td>" + users[i].user_id + "</td><td>"
+                    + users[i].post_date + "</td><td>" + users[i].post_text + "</td><td>"
+                    + users[i].post_time + "</td><td>" + users[i].post_views + "</td></tr>";
+            }
+            table += "</table>";
+            // Send the HTML table as the response
+            res.send(table);
+        }
+        // Close the database connection
+        connection.end();
+    });
+});
+
+app.get("/user_timeline3", function (req, res) {
+
+    const mysql = require('mysql');
+
+    // Create a connection to the database
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'root',
+        database: 'assignment6'
+    });
+
+    // Connect to the database
+    connection.connect();
+
+    // Query the user table
+    connection.query('SELECT * FROM A01351217_user_timeline WHERE A01351217_user_timeline.user_id = 3', function (error, users, fields) {
+        if (error) {
+            // in production, you'd really want to send an email to admin
+            // or in the very least, log it. But for now, just console
+            console.log(error);
+        } else {
+            // Create an HTML table to display the results
+            let table = "<table><tr><th>Post ID</th><th>User ID</th><th>Post Date</th><th>Post Text</th><th>Post time</th><th>Post Views</th></tr>";
+            for (let i = 0; i < users.length; i++) {
+                table += "<tr><td>" + users[i].id + "</td><td>" + users[i].user_id + "</td><td>"
+                    + users[i].post_date + "</td><td>" + users[i].post_text + "</td><td>"
+                    + users[i].post_time + "</td><td>" + users[i].post_views + "</td></tr>";
+            }
+            table += "</table>";
+            // Send the HTML table as the response
+            res.send(table);
+        }
+        // Close the database connection
+        connection.end();
+    });
 });
 
 // RUN SERVER
@@ -160,7 +235,7 @@ async function init() {
     await connection.query("USE assignment6");
 
     // Create the A01351217_user table if it doesn't exist
-    await connection.query(`CREATE TABLE IF NOT EXISTS A012345678_user (
+    await connection.query(`CREATE TABLE IF NOT EXISTS A01351217_user (
         id int NOT NULL AUTO_INCREMENT,
         username varchar(30),
         first_name varchar(30),
@@ -183,38 +258,38 @@ async function init() {
     )`);
 
     // Insert some sample records into the A01351217_user_timeline table
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (1, '2023-03-28', 'Today I worked on assignment6', '10:41:12', 100)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (1, '2023-03-28', 'I hope 1537 final will not be too difficult.', '11:45:10', 2000)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (1, '2023-03-29', 'Will Arron give me good grade if I buy him sandwhich?', '18:20:43', 2112)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (1, '2023-03-30', 'I cannot wait for summer break.', '19:20:12', 130)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (1, '2023-03-29', 'Ok, this is my last.', '23:10:23', 345)`);    
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (1, '2023-03-28', 'Today I worked on assignment6', '10:41:12', 100)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (1, '2023-03-28', 'I hope 1537 final will not be too difficult.', '11:45:10', 2000)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (1, '2023-03-29', 'Will Arron give me good grade if I buy him sandwhich?', '18:20:43', 2112)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (1, '2023-03-30', 'I cannot wait for summer break.', '19:20:12', 130)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (1, '2023-03-29', 'Ok, this is my last.', '23:10:23', 345)`);    
 
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (2, '2023-03-28', 'Hi, I am back', '10:30:00', 1234132)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (2, '2023-03-28', 'You just have to not feed.', '11:45:43', 4326342)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (2, '2023-03-29', 'Faker is a negative word, but it is still cool.', '15:23:10', 56743)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (2, '2023-03-30', 'Thanks for cheering us.', '19:20:22', 92654)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (2, '2023-03-30', 'I need to work even harder in the future.', '23:12:23', 132415)`); 
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (2, '2023-03-28', 'Hi, I am back', '10:30:00', 1234132)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (2, '2023-03-28', 'You just have to not feed.', '11:45:43', 4326342)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (2, '2023-03-29', 'Faker is a negative word, but it is still cool.', '15:23:10', 56743)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (2, '2023-03-30', 'Thanks for cheering us.', '19:20:22', 92654)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (2, '2023-03-30', 'I need to work even harder in the future.', '23:12:23', 132415)`); 
     
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (3, '2023-03-28', 'I like anchovies.', '10:30:00', 2643)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (3, '2023-03-29', 'Can we beat t1?', '11:45:32', 282)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (3, '2023-03-29', 'I miss griffin.', '13:23:10', 6548)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (3, '2023-03-29', 'Hope we can beat t1.', '15:21:17', 24563)`);
-    await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-        VALUES (3, '2023-03-30', 'Exactly at 22:22:22!', '22:22:22', 56858)`); 
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (3, '2023-03-28', 'I like anchovies.', '10:30:00', 2643)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (3, '2023-03-29', 'Can we beat t1?', '11:45:32', 282)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (3, '2023-03-29', 'I miss griffin.', '13:23:10', 6548)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (3, '2023-03-29', 'Hope we can beat t1.', '15:21:17', 24563)`);
+    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
+    //     VALUES (3, '2023-03-30', 'Exactly at 22:22:22!', '22:22:22', 56858)`); 
     // Close the database connection
     await connection.end();
 
