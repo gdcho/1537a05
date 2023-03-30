@@ -257,40 +257,6 @@ async function init() {
         FOREIGN KEY (user_id) REFERENCES A01351217_user(id)
     )`);
 
-    // Insert some sample records into the A01351217_user_timeline table
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (1, '2023-03-28', 'Today I worked on assignment6', '10:41:12', 100)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (1, '2023-03-28', 'I hope 1537 final will not be too difficult.', '11:45:10', 2000)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (1, '2023-03-29', 'Will Arron give me good grade if I buy him sandwhich?', '18:20:43', 2112)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (1, '2023-03-30', 'I cannot wait for summer break.', '19:20:12', 130)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (1, '2023-03-29', 'Ok, this is my last.', '23:10:23', 345)`);    
-
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (2, '2023-03-28', 'Hi, I am back', '10:30:00', 1234132)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (2, '2023-03-28', 'You just have to not feed.', '11:45:43', 4326342)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (2, '2023-03-29', 'Faker is a negative word, but it is still cool.', '15:23:10', 56743)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (2, '2023-03-30', 'Thanks for cheering us.', '19:20:22', 92654)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (2, '2023-03-30', 'I need to work even harder in the future.', '23:12:23', 132415)`); 
-    
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (3, '2023-03-28', 'I like anchovies.', '10:30:00', 2643)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (3, '2023-03-29', 'Can we beat t1?', '11:45:32', 282)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (3, '2023-03-29', 'I miss griffin.', '13:23:10', 6548)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (3, '2023-03-29', 'Hope we can beat t1.', '15:21:17', 24563)`);
-    // await connection.query(`INSERT INTO A01351217_user_timeline (user_id, post_date, post_text, post_time, post_views)
-    //     VALUES (3, '2023-03-30', 'Exactly at 22:22:22!', '22:22:22', 56858)`); 
-    // Close the database connection
     await connection.end();
 
     console.log("Listening on port " + port + "!");
