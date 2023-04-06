@@ -195,7 +195,7 @@ app.get("/user_timeline3", function (req, res) {
     connection.connect();
 
     // Query the user table
-    connection.query('SELECT * FROM A01351217_user_timeline WHERE A01351217_user_timeline.user_id = 3', function (error, users, fields) {
+    connection.query('SELECT A01351217_user_timeline.id, A01351217_user_timeline.user_id, A01351217_user_timeline.post_date, A01351217_user_timeline.post_text, A01351217_user_timeline.post_time, A01351217_user_timeline.post_views FROM A01351217_user_timeline INNER JOIN A01351217_user ON A01351217_user_timeline.user_id = A01351217_user.id WHERE A01351217_user.username = "gengchovy"', function (error, users, fields) {
         if (error) {
             // in production, you'd really want to send an email to admin
             // or in the very least, log it. But for now, just console
